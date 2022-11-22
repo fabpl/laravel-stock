@@ -1,10 +1,9 @@
 {
     "name": "fabpl/laravel-stock",
-    "description": "This is my package laravel-stock",
+    "description": "Keep stock for Eloquent models.",
     "keywords": [
-        "fabpl",
         "laravel",
-        "laravel-stock"
+        "stock"
     ],
     "homepage": "https://github.com/fabpl/laravel-stock",
     "license": "MIT",
