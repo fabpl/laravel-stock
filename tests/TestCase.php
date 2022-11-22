@@ -1,36 +1,53 @@
 <?php
 
-namespace Fabpl\LaravelStock\Tests;
+namespace Fabpl\Stock\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Fabpl\Stock\StockServiceProvider;
+use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Fabpl\LaravelStock\LaravelStockServiceProvider;
 
 class TestCase extends Orchestra
 {
+    protected Stockable $stockable;
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Fabpl\\LaravelStock\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
+        $migration = include __DIR__.'/../database/migrations/create_stock_table.php.stub';
+        $migration->up();
+
+        $builder = $this->app['db']->connection()->getSchemaBuilder();
+
+        $builder->create('stockables', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+        });
+
+        $builder->create('references', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+        });
+
+        $this->reference = Reference::create(['name' => 'Test Stockable']);
+        $this->stockable = Stockable::create(['name' => 'Test Stockable']);
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
-            LaravelStockServiceProvider::class,
+            StockServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-stock_table.php.stub';
-        $migration->up();
-        */
+        config()->set('database.connections.testing', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
     }
 }

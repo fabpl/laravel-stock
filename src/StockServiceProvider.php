@@ -1,12 +1,11 @@
 <?php
 
-namespace Fabpl\LaravelStock;
+namespace Fabpl\Stock;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Fabpl\LaravelStock\Commands\LaravelStockCommand;
 
-class LaravelStockServiceProvider extends PackageServiceProvider
+class StockServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -17,9 +16,7 @@ class LaravelStockServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-stock')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-stock_table')
-            ->hasCommand(LaravelStockCommand::class);
+            ->hasConfigFile('stock')
+            ->hasMigration('create_stock_table');
     }
 }

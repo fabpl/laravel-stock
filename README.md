@@ -52,8 +52,8 @@ php artisan vendor:publish --tag="laravel-stock-views"
 ## Usage
 
 ```php
-$laravelStock = new Fabpl\LaravelStock();
-echo $laravelStock->echoPhrase('Hello, Fabpl!');
+$Stock = new Fabpl\Stock();
+echo $Stock->echoPhrase('Hello, Fabpl!');
 ```
 
 ## Testing

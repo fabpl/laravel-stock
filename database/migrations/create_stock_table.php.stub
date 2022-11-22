@@ -8,10 +8,28 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('laravel_stock_table', function (Blueprint $table) {
+        $tableNames = config('stock.table_names');
+
+        if (empty($tableNames)) {
+            throw new \Exception('Error: config/stock.php not loaded. Run [php artisan config:clear] and try again.');
+        }
+
+        Schema::create($tableNames['stocks'], function (Blueprint $table) {
             $table->id();
 
-            // add fields
+            $table->morphs('stockable');
+            $table->integer('quantity');
+
+            $table->timestamps();
+        });
+
+        Schema::create($tableNames['stock_mutations'], function (Blueprint $table) {
+            $table->id();
+
+            $table->morphs('stockable');
+            $table->nullableMorphs('reference');
+            $table->integer('quantity');
+            $table->text('description')->nullable();
 
             $table->timestamps();
         });

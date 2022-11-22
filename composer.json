@@ -34,13 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Fabpl\\LaravelStock\\": "src",
-            "Fabpl\\LaravelStock\\Database\\Factories\\": "database/factories"
+            "Fabpl\\Stock\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Fabpl\\LaravelStock\\Tests\\": "tests"
+            "Fabpl\\Stock\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -60,11 +59,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Fabpl\\LaravelStock\\LaravelStockServiceProvider"
-            ],
-            "aliases": {
-                "LaravelStock": "Fabpl\\LaravelStock\\Facades\\LaravelStock"
-            }
+                "Fabpl\\Stock\\StockServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
