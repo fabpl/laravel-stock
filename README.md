@@ -1,19 +1,8 @@
-# This is my package laravel-stock
+# Laravel Stock
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/fabpl/laravel-stock.svg?style=flat-square)](https://packagist.org/packages/fabpl/laravel-stock)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/fabpl/laravel-stock/run-tests?label=tests)](https://github.com/fabpl/laravel-stock/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/fabpl/laravel-stock/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/fabpl/laravel-stock/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/fabpl/laravel-stock.svg?style=flat-square)](https://packagist.org/packages/fabpl/laravel-stock)
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-stock.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-stock)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Keep stock for Eloquent models. 
+This package will track stock mutations for your models. 
+You can increase, decrease stock.
 
 ## Installation
 
@@ -43,17 +32,42 @@ return [
 ];
 ```
 
-Optionally, you can publish the views using
+## Preparing your model
 
-```bash
-php artisan vendor:publish --tag="laravel-stock-views"
-```
-
-## Usage
+To associate stock with a model, the model must implement the following interface and trait:
 
 ```php
-$Stock = new Fabpl\Stock();
-echo $Stock->echoPhrase('Hello, Fabpl!');
+use \Fabpl\Stock\Concerns\InteractsWithStock;
+use \Fabpl\Stock\Contract\HasStock;
+
+class Product extends Model implements HasStock
+{
+    use InteractsWithStock;
+}
+```
+
+To increment stock, you can use the `incrementStock` method:
+
+```php
+$product->incrementStock(10);
+```
+
+To decrement stock, you can use the `decrementStock` method:
+
+```php
+$product->decrementStock(10);
+```
+
+If you want to use _reference_ functionality, the model must implement the following interface and trait:
+
+```php
+use \Fabpl\Stock\Concerns\ReferencesInStockMutations;
+use \Fabpl\Stock\Contract\CauseStockMutation;
+
+class Order extends Model implements CauseStockMutation
+{
+    use ReferencesInStockMutations;
+}
 ```
 
 ## Testing
@@ -77,7 +91,6 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Fabrice Planchette](https://github.com/fabpl)
-- [All Contributors](../../contributors)
 
 ## License
 
