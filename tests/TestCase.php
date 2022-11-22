@@ -2,9 +2,9 @@
 
 namespace Fabpl\LaravelStock\Tests;
 
+use Fabpl\LaravelStock\LaravelStockServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Fabpl\LaravelStock\LaravelStockServiceProvider;
 
 class TestCase extends Orchestra
 {

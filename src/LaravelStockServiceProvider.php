@@ -2,9 +2,9 @@
 
 namespace Fabpl\LaravelStock;
 
+use Fabpl\LaravelStock\Commands\LaravelStockCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Fabpl\LaravelStock\Commands\LaravelStockCommand;
 
 class LaravelStockServiceProvider extends PackageServiceProvider
 {
