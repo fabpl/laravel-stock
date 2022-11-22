@@ -2,7 +2,6 @@
 
 namespace Fabpl\Stock;
 
-use Fabpl\LaravelStock\Commands\LaravelStockCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
