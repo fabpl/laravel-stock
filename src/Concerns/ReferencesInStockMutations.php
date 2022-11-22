@@ -2,7 +2,6 @@
 
 namespace Fabpl\Stock\Concerns;
 
-use Fabpl\Stock\Models\StockMutation;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait ReferencesInStockMutations
@@ -14,6 +13,6 @@ trait ReferencesInStockMutations
      */
     public function stock_references(): MorphMany
     {
-        return $this->morphMany(StockMutation::class, 'reference');
+        return $this->morphMany(config('stock.models.stock_mutation'), 'reference');
     }
 }

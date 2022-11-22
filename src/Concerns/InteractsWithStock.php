@@ -2,7 +2,6 @@
 
 namespace Fabpl\Stock\Concerns;
 
-use Fabpl\Stock\Models\Stock;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait InteractsWithStock
@@ -26,6 +25,6 @@ trait InteractsWithStock
      */
     public function stock(): MorphOne
     {
-        return $this->morphOne(Stock::class, 'stockable');
+        return $this->morphOne(config('stock.models.stock'), 'stockable');
     }
 }

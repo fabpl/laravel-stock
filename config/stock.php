@@ -5,7 +5,7 @@ return [
     'models' => [
 
         /*
-         * When using the "HasStock" trait from this package, we need to know which
+         * When using the "InteractsWithStock" trait from this package, we need to know which
          * Eloquent model should be used to retrieve your stocks. Of course, it
          * is often just the "Stock" model, but you may use whatever you like.
          *
@@ -16,7 +16,7 @@ return [
         'stock' => Fabpl\Stock\Models\Stock::class,
 
         /*
-         * When using the "HasStockMutations" trait from this package, we need to know which
+         * When using "InteractsWithStockMutations" or "ReferencesInStockMutations" traits from this package, we need to know which
          * Eloquent model should be used to retrieve your stock mutations. Of course, it
          * is often just the "StockMutation" model, but you may use whatever you like.
          *
@@ -31,7 +31,7 @@ return [
     'table_names' => [
 
         /*
-         * When using the "HasStock" trait from this package, we need to know which
+         * When using the "InteractsWithStock" trait from this package, we need to know which
          * table should be used to retrieve your stocks. We have chosen a basic
          * default value, but you may easily change it to any table you like.
          */
@@ -39,7 +39,7 @@ return [
         'stocks' => 'stocks',
 
         /*
-         * When using the "HasStockMutations" trait from this package, we need to know which
+         * When using "InteractsWithStockMutations" or "ReferencesInStockMutations" traits from this package, we need to know which
          * table should be used to retrieve your stock mutations. We have chosen a basic
          * default value, but you may easily change it to any table you like.
          */

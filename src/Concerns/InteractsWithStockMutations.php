@@ -5,7 +5,6 @@ namespace Fabpl\Stock\Concerns;
 use Fabpl\Stock\Contract\CauseStockMutation;
 use Fabpl\Stock\Exceptions\InvalidDecrementStockCallException;
 use Fabpl\Stock\Exceptions\InvalidQuantityStockArgumentException;
-use Fabpl\Stock\Models\StockMutation;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait InteractsWithStockMutations
@@ -17,7 +16,7 @@ trait InteractsWithStockMutations
      */
     public function stock_mutations(): MorphMany
     {
-        return $this->morphMany(StockMutation::class, 'stockable');
+        return $this->morphMany(config('stock.models.stock_mutation'), 'stockable');
     }
 
     public function incrementStock(int $quantity = 1, ?string $description = null, ?CauseStockMutation $causer = null): void
