@@ -15,14 +15,14 @@ composer require fabpl/laravel-stock
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-stock-migrations"
+php artisan vendor:publish --tag="stock-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-stock-config"
+php artisan vendor:publish --tag="stock-config"
 ```
 
 This is the contents of the published config file:
